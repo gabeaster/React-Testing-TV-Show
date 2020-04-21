@@ -1,5 +1,6 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import App from "./App";
 import { fetchShow as mockFetchShow } from "./api/fetchShow";
 
@@ -114,8 +115,41 @@ const testData = {
 //TEST THAT APP RENDERS DATA SUCCESSFULLY
 test("the app renders data successfully", () => {
   mockFetchShow.mockResolvedValueOnce(testData);
+
   render(<App />);
 });
-//TEST THAT SEASONS RENDER IN THE DROP DOWN MENU
 
+//TEST THAT SEASONS RENDER IN THE DROP DOWN MENU
+//getByRole - option
+test("seasons are in the drop down menu", async () => {
+  mockFetchShow.mockResolvedValueOnce(testData);
+  // attempt3:
+  const { getByText } = render(<App />);
+
+  await waitFor(() => {
+    const dropdown = getByText(/select a season/i);
+    dropdown.value = "Season 1";
+    expect(dropdown).toHaveValue("Season 1");
+  });
+
+  //   attempt2:
+  //   const { getByText, getAllByText } = render(<App />);
+  //   await waitFor(() => {
+  //     getByText(/select a season/i);
+  //   });
+  //   const dropdown = getByText(/select a season/i);
+  //   userEvent.click(dropdown);
+  //   expect(getAllByText(/season /i)).toHaveLength(3);
+
+  //   attempt1:
+  //   const { queryAllByTestId, getAllByRole } = render(<App />);
+
+  //   const dropdown = queryAllByTestId(/dropdown/);
+  //   console.log(dropdown);
+  //   userEvent.click(dropdown);
+
+  //   await waitFor(() => {
+  //     expect(getAllByRole(/option/i)).toHaveLength(3);
+  //   });
+});
 //TEST THAT EPISODES RENDER WHEN SEASON IS SELECTED
