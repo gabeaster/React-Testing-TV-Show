@@ -2,13 +2,13 @@ import React from "react";
 import { render } from "@testing-library/react";
 import Episodes from "./Episodes";
 
-//test data for episodes contains 3 objects
+//episodeTestData renders with 2 objects in the array
 const episodeTestData = [
   {
     id: 553946,
     url:
-      "http://www.tvmaze.com/episodes/553946/stranger-things-1x01-chapter-one-the-vanishing-of-will-byers",
-    name: "Chapter One: The Vanishing of Will Byers",
+      "http://www.tvmaze.com/episodes553946stranger-things-1x01-chapter-one-the-vanising-of-will-byers",
+    name: "Chapter One: The Vanishing of WillByers",
     season: 1,
     number: 1,
     airdate: "2016-07-15",
@@ -17,23 +17,23 @@ const episodeTestData = [
     runtime: 60,
     image: {
       medium:
-        "http://static.tvmaze.com/uploads/images/medium_landscape/67/168918.jpg",
+        "http://static.tvmaze.comuploads/images/medium_landscape/67168918.jpg",
       original:
-        "http://static.tvmaze.com/uploads/images/original_untouched/67/168918.jpg",
+        "http://static.tvmaze.comuploads/images/original_untouched/67168918.jpg",
     },
     summary:
-      "<p>A young boy mysteriously disappears, and his panicked mother demands that the police find him. Meanwhile, the boy's friends conduct their own search, and meet a mysterious girl in the forest.</p>",
+      "<p>A young boy mysteriouslydisappears, and his panicked motherdemands that the police find him.Meanwhile, the boy's friends conducttheir own search, and meet a mysteriousgirl in the forest.</p>",
     _links: {
       self: {
-        href: "http://api.tvmaze.com/episodes/553946",
+        href: "http://api.tvmaze.com/episodes553946",
       },
     },
   },
   {
     id: 578663,
     url:
-      "http://www.tvmaze.com/episodes/578663/stranger-things-1x02-chapter-two-the-weirdo-on-maple-street",
-    name: "Chapter Two: The Weirdo on Maple Street",
+      "http://www.tvmaze.com/episodes578663stranger-things-1x02-chapter-two-the-weird-on-maple-street",
+    name: "Chapter Two: The Weirdo on MapleStreet",
     season: 1,
     number: 2,
     airdate: "2016-07-15",
@@ -42,41 +42,30 @@ const episodeTestData = [
     runtime: 60,
     image: {
       medium:
-        "http://static.tvmaze.com/uploads/images/medium_landscape/72/181376.jpg",
+        "http://static.tvmaze.comuploads/images/medium_landscape/72181376.jpg",
       original:
-        "http://static.tvmaze.com/uploads/images/original_untouched/72/181376.jpg",
+        "http://static.tvmaze.comuploads/images/original_untouched/72181376.jpg",
     },
     summary:
-      "<p>While the search for the missing Will continues, Joyce tells Jim about a call she apparently received from her son. Meanwhile, Jane warns Mike that there are bad people after her, and he realizes that she knows what happened to Will.</p>",
+      "<p>While the search for themissing Will continues, Joyce tells Jimabout a call she apparently received fromher son. Meanwhile, Jane warns Mike thatthere are bad people after her, and herealizes that she knows what happened toWill.</p>",
     _links: {
       self: {
-        href: "http://api.tvmaze.com/episodes/578663",
-      },
-    },
-  },
-  {
-    id: 578664,
-    url:
-      "http://www.tvmaze.com/episodes/578664/stranger-things-1x03-chapter-three-holly-jolly",
-    name: "Chapter Three: Holly, Jolly",
-    season: 1,
-    number: 3,
-    airdate: "2016-07-15",
-    airtime: "",
-    airstamp: "2016-07-15T12:00:00+00:00",
-    runtime: 60,
-    image: {
-      medium:
-        "http://static.tvmaze.com/uploads/images/medium_landscape/67/168920.jpg",
-      original:
-        "http://static.tvmaze.com/uploads/images/original_untouched/67/168920.jpg",
-    },
-    summary:
-      "<p>While Nancy looks for a missing Barbara and realizes that Jonathan may have been the last person to see her, Mike and his friends go out with Jane to find the missing Will. Meanwhile, Jim tracks Will to the lab.</p>",
-    _links: {
-      self: {
-        href: "http://api.tvmaze.com/episodes/578664",
+        href: "http://api.tvmaze.com/episodes578663",
       },
     },
   },
 ];
+
+test("Episodes renders without errors", () => {
+  render(<Episodes episodes={[]} />);
+});
+
+//be sure to pass props to represent props being passed into episodes.js
+test("Episodes render after api call returns episode test data", () => {
+  const { rerender, queryAllByTestId } = render(<Episodes episodes={[]} />);
+  expect(queryAllByTestId("episode")).toHaveLength(0);
+
+  //now that we've confirmed the array is empty and not returning data, we rerender and return episodeTestData into props to represent our api call- there should be 2 objects in the episode array
+  rerender(<Episodes episodes={episodeTestData} />);
+  expect(queryAllByTestId("episode")).toHaveLength(2);
+});
