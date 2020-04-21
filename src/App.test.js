@@ -6,6 +6,7 @@ import { fetchShow as mockFetchShow } from "./api/fetchShow";
 
 jest.mock("./api/fetchShow.js");
 
+//testData is has data with one object inside.
 const testData = {
   data: {
     id: 2993,
