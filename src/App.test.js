@@ -111,8 +111,11 @@ const testData = {
   },
 };
 
-//TEST THAT APP RENDERS
-
+//TEST THAT APP RENDERS DATA SUCCESSFULLY
+test("the app renders data successfully", () => {
+  mockFetchShow.mockResolvedValueOnce(testData);
+  render(<App />);
+});
 //TEST THAT SEASONS RENDER IN THE DROP DOWN MENU
 
 //TEST THAT EPISODES RENDER WHEN SEASON IS SELECTED
