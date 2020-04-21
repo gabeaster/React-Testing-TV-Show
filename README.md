@@ -16,15 +16,15 @@ Get the project fired up and start using it as a user would. Try to go through t
 
 ### Project Set Up
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your team lead as collaborator on Github.
-- [ ] Clone your OWN version of the repository in your terminal
-- [ ] CD into the project base directory `cd React-Testing-TV-Show`
-- [ ] Download project dependencies by running `npm install`
-- [ ] Start up the app using `npm start`
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [DONE] Create a forked copy of this project.
+- [DONE] Add your team lead as collaborator on Github.
+- [DONE] Clone your OWN version of the repository in your terminal
+- [DONE] CD into the project base directory `cd React-Testing-TV-Show`
+- [DONE] Download project dependencies by running `npm install`
+- [DONE] Start up the app using `npm start`
+- [DONE] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [DONE] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [DONE] Push commits: git push origin `<firstName-lastName>`.
 
 Follow these steps for completing your project.
 
@@ -37,16 +37,16 @@ Follow these steps for completing your project.
 
 Your challenge for this module: write tests for both the `App.js` component and the `Episodesjs` component. Take note of where the state is being managed, where the async call is, and where different data peices are being rendered. Understanding all of this will be important so you know how to test each component.
 
-**Moving the async call**
+** DONE Moving the async call**
 
 The async call being inside the component makes it hard to test the asynchronous nature of the component. Let's move the async function into an `/api` directory so we can easily mock that function and make the async tests easier.
 
-1. Create a directory called `/api` in the `src` directory
-1. Create a file inside `/api` called `fetchShow.js`
-1. Move `fetchShow` into that new file and export it (fetchShow is in the `useEffect` - pay attention to how this was setting state. You will still need to set state in this effect hook the exact same way...)
-1. Import `fetchShow` into `App.js` so you can make your async call from your `useEffect` hook.
-1. You will need to `return` the `axios.get` call, _and_ the data inside your `.then()`. This is necessary because when you call `fetchShow` in your useEffect, you need to chain off the promise for a new `.then()`, then you need the data to be returned once the promise is resolved
-1. Inside your `.then()` in the `useEffect` hook, set your data again.
+1. DONE Create a directory called `/api` in the `src` directory
+1. DONE Create a file inside `/api` called `fetchShow.js`
+1. DONE Move `fetchShow` into that new file and export it (fetchShow is in the `useEffect` - pay attention to how this was setting state. You will still need to set state in this effect hook the exact same way...)
+1. DONE Import `fetchShow` into `App.js` so you can make your async call from your `useEffect` hook.
+1. DONE You will need to `return` the `axios.get` call, _and_ the data inside your `.then()`. This is necessary because when you call `fetchShow` in your useEffect, you need to chain off the promise for a new `.then()`, then you need the data to be returned once the promise is resolved
+1. DONE Inside your `.then()` in the `useEffect` hook, set your data again.
 
 - Note that you need `axios` in the new file
 
@@ -58,7 +58,7 @@ export const fetchShow = () => {
   return axios.get
     .then(res => return res) // or res.data, however you want to set that up
 }
-  
+
  // App.js
 useEffect(() => {
   fetchShow
