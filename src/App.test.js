@@ -120,26 +120,26 @@ test("the app renders data successfully", () => {
 });
 
 //TEST THAT SEASONS RENDER IN THE DROP DOWN MENU
-//getByRole - option
+//attempt 2 and 3 are both working now
 test("seasons are in the drop down menu", async () => {
   mockFetchShow.mockResolvedValueOnce(testData);
   // attempt3:
-  const { getByText } = render(<App />);
+  //   const { getByText } = render(<App />);
 
-  await waitFor(() => {
-    const dropdown = getByText(/select a season/i);
-    dropdown.value = "Season 1";
-    expect(dropdown).toHaveValue("Season 1");
-  });
+  //   await waitFor(() => {
+  //     const dropdown = getByText(/select a season/i);
+  //     dropdown.value = "Season 1";
+  //     expect(dropdown).toHaveValue("Season 1");
+  //   });
 
   //   attempt2:
-  //   const { getByText, getAllByText } = render(<App />);
-  //   await waitFor(() => {
-  //     getByText(/select a season/i);
-  //   });
-  //   const dropdown = getByText(/select a season/i);
-  //   userEvent.click(dropdown);
-  //   expect(getAllByText(/season /i)).toHaveLength(3);
+  const { getByText, getAllByText } = render(<App />);
+  await waitFor(() => {
+    getByText(/select a season/i);
+  });
+  const dropdown = getByText(/select a season/i);
+  userEvent.click(dropdown);
+  expect(getAllByText(/season /i)).toHaveLength(1);
 
   //   attempt1:
   //   const { queryAllByTestId, getAllByRole } = render(<App />);
@@ -152,4 +152,3 @@ test("seasons are in the drop down menu", async () => {
   //     expect(getAllByRole(/option/i)).toHaveLength(3);
   //   });
 });
-//TEST THAT EPISODES RENDER WHEN SEASON IS SELECTED
